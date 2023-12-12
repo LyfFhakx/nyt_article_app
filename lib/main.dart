@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() {
+import 'src/core.dart';
+
+final navigatorKey = GlobalKey<NavigatorState>();
+
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Inject all dependencies
+  await serviceLocatorInitialization();
   runApp(const MyApp());
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+
 }
 
 class MyApp extends StatelessWidget {
